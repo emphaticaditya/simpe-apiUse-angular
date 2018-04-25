@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Crypto-App</title>
+    <script src="angular.js"></script>
+    <script src="app.js"></script>
+    <!--style-bootstrap-4-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div ng-controller="myController" class="container">
+        <h4 class="text-center pt-3 text-uppercase">Top 10 Crypto Currencies</h4>
+            <div class="search-wrap input-group col-md-4">
+                <input type="text" class="form-control" placeholder="Search Cryptocurrency" aria-label="Recipient's username" aria-describedby="basic-addon2" ng-model="searchBox">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" ng-click="searchBtn(searchBox)" data-toggle="modal" data-target="#exampleModalLong">Search</button>
+                </div>
+            </div>
+        <!-- Large modal -->
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-uppercase" id="exampleModalLongTitle">{{searchBox}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="loadersmall"></div>
+                        <table class="table" id="modal-table">
+                            <thead class="thead-dark">
+                                <th>Timestamp</th>
+                                <th>USD</th>
+                                <th>When</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="dataCoin in searchCoin | orderBy: 'usd'">
+                                    <td>{{dataCoin.timestamp | date}}</td>
+                                    <td>{{dataCoin.usd | currency}}</td>
+                                    <td>{{dataCoin.when}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                    <th>USD</th>
+                    <th>BTC</th>
+                    <th>Ticker</th>
+                </tr>
+            </thead>
+            <tbody ng-cloak>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.btc.name}}</td>
+                    <td>{{coin.btc.rank}}</td>
+                    <td>{{coin.btc.usd | currency}}</td>
+                    <td>{{coin.btc.btc}}</td>
+                    <td>{{coin.btc.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.eth.name}}</td>
+                    <td>{{coin.eth.rank}}</td>
+                    <td>{{coin.eth.usd | currency}}</td>
+                    <td>{{coin.eth.btc}}</td>
+                    <td>{{coin.eth.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.xrp.name}}</td>
+                    <td>{{coin.xrp.rank}}</td>
+                    <td>{{coin.xrp.usd | currency}}</td>
+                    <td>{{coin.xrp.btc}}</td>
+                    <td>{{coin.xrp.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.bch.name}}</td>
+                    <td>{{coin.bch.rank}}</td>
+                    <td>{{coin.bch.usd | currency}}</td>
+                    <td>{{coin.bch.btc}}</td>
+                    <td>{{coin.bch.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.ltc.name}}</td>
+                    <td>{{coin.ltc.rank}}</td>
+                    <td>{{coin.ltc.usd | currency}}</td>
+                    <td>{{coin.ltc.btc}}</td>
+                    <td>{{coin.ltc.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.ada.name}}</td>
+                    <td>{{coin.ada.rank}}</td>
+                    <td>{{coin.ada.usd | currency}}</td>
+                    <td>{{coin.ada.btc}}</td>
+                    <td>{{coin.ada.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.xlm.name}}</td>
+                    <td>{{coin.xlm.rank}}</td>
+                    <td>{{coin.xlm.usd | currency}}</td>
+                    <td>{{coin.xlm.btc}}</td>
+                    <td>{{coin.xlm.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.miota.name}}</td>
+                    <td>{{coin.miota.rank}}</td>
+                    <td>{{coin.miota.usd | currency}}</td>
+                    <td>{{coin.miota.btc}}</td>
+                    <td>{{coin.miota.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.neo.name}}</td>
+                    <td>{{coin.neo.rank}}</td>
+                    <td>{{coin.neo.usd | currency}}</td>
+                    <td>{{coin.neo.btc}}</td>
+                    <td>{{coin.neo.ticker}}</td>
+                </tr>
+                <tr ng-repeat="coin in allCoins">
+                    <td>{{coin.xmr.name}}</td>
+                    <td>{{coin.xmr.rank}}</td>
+                    <td>{{coin.xmr.usd | currency}}</td>
+                    <td>{{coin.xmr.btc}}</td>
+                    <td>{{coin.xmr.ticker}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+<!--scripts-bootstrap-4-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
